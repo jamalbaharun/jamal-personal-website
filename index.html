@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamalullail Baharun - Lead Engineer</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette */
+            --primary: #3b82f6;
+            /* Bright Blue */
+            --primary-dark: #2563eb;
+            --secondary: #0f172a;
+            /* Slate 900 */
+            --text-main: #334155;
+            /* Slate 700 */
+            --text-light: #64748b;
+            /* Slate 500 */
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --accent: #8b5cf6;
+            /* Violet */
+
+            /* Shadows & Glass */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--secondary);
+            letter-spacing: -0.025em;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Header / Nav (Glassmorphism) */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--secondary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links a {
+            margin-left: 32px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 100px;
+            background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+            text-align: center;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 40px;
+            color: var(--text-light);
+            font-size: 1.125rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 9999px;
+            /* Pill shape */
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Skills Tag Style */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            color: var(--text-main);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        /* Experience Cards */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .job-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #e2e8f0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--secondary);
+        }
+
+        .job-company {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .job-date {
+            background: #f1f5f9;
+            color: var(--text-light);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .job-details ul {
+            padding-left: 20px;
+            color: var(--text-main);
+        }
+
+        .job-details li {
+            margin-bottom: 10px;
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 16px;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* Simplified mobile handling */
+            .job-header {
+                flex-direction: column;
+            }
+
+            .job-date {
+                margin-top: 8px;
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Jamalullail.</a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Work</a>
+                    <a href="#education">Education</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Jamalullail Baharun</h1>
+            <h2>Lead Engineer & Product Specialist</h2>
+            <p>Product-focused Lead Engineer with 9+ years of experience delivering mobile and SaaS products in F&B,
+                Fintech, and E-commerce.</p>
+            <a href="mailto:jamalbhr@gmail.com" class="btn">Let's Talk</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h3>Core Competencies</h3>
+            <div class="skills-grid">
+                <div class="skill-tag">Product Discovery</div>
+                <div class="skill-tag">Android (Kotlin, Jetpack Compose)</div>
+                <div class="skill-tag">Sprint Leadership</div>
+                <div class="skill-tag">CI/CD & DevOps</div>
+                <div class="skill-tag">REST APIs</div>
+                <div class="skill-tag">Datadog Monitoring</div>
+                <div class="skill-tag">Agile (Jira & Confluence)</div>
+                <div class="skill-tag">Incident Management</div>
+                <div class="skill-tag">Strategic Planning (RICE & MOSCOW)</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h3>Experience</h3>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Lead Engineer</div>
+                        <span class="job-company">TabSquare.AI</span>
+                    </div>
+                    <div class="job-date">Aug 2023 - Dec 2025</div>
+                </div>
+                <div class="job-details">
+                    <ul>
+                        <li>Drastically reduced hardware acquisition costs by 87% (from USD 800 to USD 100) through
+                            strategic optimizing.</li>
+                        <li>Architected the Multi-Printer System, slashing printing latency to under 5 seconds.</li>
+                        <li>Achieved 99.999% reliability in order processing, reducing delay rates from 5% to 0.001%.
+                        </li>
+                        <li>Mentored a team of Android engineers, driving technical excellence and roadmap execution.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Android Developer</div>
+                        <span class="job-company">Giladiskon</span>
+                    </div>
+                    <div class="job-date">Apr 2019 - Nov 2019</div>
+                </div>
+                <div class="job-details">
+                    <ul>
+                        <li>Revamped voucher discovery and redemption flows, increasing user engagement.</li>
+                        <li>Optimized app performance via advanced caching strategies and UI rendering improvements.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Android Developer</div>
+                        <span class="job-company">Fundtastic</span>
+                    </div>
+                    <div class="job-date">Apr 2018 - Mar 2019</div>
+                </div>
+                <div class="job-details">
+                    <ul>
+                        <li>Built end-to-end modules for user onboarding, investment portfolios, and financial planning.
+                        </li>
+                        <li>Improved conversion funnels and overall application stability, reducing crash rates.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Android Developer</div>
+                        <span class="job-company">PT Treemas Solusi Utama</span>
+                    </div>
+                    <div class="job-date">Apr 2016 - Nov 2017</div>
+                </div>
+                <div class="job-details">
+                    <ul>
+                        <li>Developed offline-first mobile solutions for critical field survey and debt collection
+                            operations.</li>
+                        <li>Led requirement gathering sessions and provided comprehensive user training.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h3>Selected Work</h3>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div>
+                        <h4>Smart Kiosk Tabsquare</h4>
+                        <p>Self-ordering kiosk solution optimizing restaurant operations and customer experience.</p>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.tabsquare.kiosk" target="_blank"
+                        class="project-link">View on Google Play &rarr;</a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h4>TabSquare Printer Console</h4>
+                        <p>A specialized utility tool for comprehensive printer management and configuration in
+                            high-volume environments.</p>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.tabsquare.tabsquareprinterconsole"
+                        target="_blank" class="project-link">View on Google Play &rarr;</a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h4>Fundtastic Client</h4>
+                        <p>A comprehensive investment application simplifying financial planning for retail investors.
+                        </p>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=id.co.fundtastic.client" target="_blank"
+                        class="project-link">View on Google Play &rarr;</a>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h4>Fundtastic Agent</h4>
+                        <p>Dedicated dashboard application empowering financial agents to manage client portfolios
+                            effectively.</p>
+                    </div>
+                    <a href="https://play.google.com/store/apps/details?id=id.co.fundtastic.agent" target="_blank"
+                        class="project-link">View on Google Play &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h3>Education & Awards</h3>
+
+            <div class="job-card" style="padding: 24px;">
+                <div style="margin-bottom: 24px;">
+                    <h4 style="margin-bottom: 4px;">Universitas Diponegoro</h4>
+                    <p style="color: var(--text-light);">S.Kom - Informatics Engineering (2012 - 2016) • GPA: 3.33</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 8px; font-size: 1.1rem;">Honors</h4>
+                    <ul style="padding-left: 20px; color: var(--text-main);">
+                        <li>Team Excellence Award - TabSquare (2023)</li>
+                        <li>Runner-Up Hackathon - TabSquare (2024)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <span class="footer-logo">Jamalullail.</span>
+            <p style="color: #94a3b8; margin-bottom: 24px;">+62 878 3213 2821 &bull; Jakarta, Indonesia</p>
+            <div>
+                <a href="mailto:jamalbhr@gmail.com">Email</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Jamalullail Baharun. All rights
+                reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
